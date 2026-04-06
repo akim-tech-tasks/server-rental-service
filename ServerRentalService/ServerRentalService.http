@@ -1,0 +1,42 @@
+@ServerRentalService_HostAddress = http://localhost:5136
+
+### 1) Add a powered-on server
+POST {{ServerRentalService_HostAddress}}/api/servers
+Content-Type: application/json
+
+{
+  "operatingSystem": "Ubuntu 24.04",
+  "memoryGb": 32,
+  "diskGb": 512,
+  "cpuCores": 16,
+  "initiallyPoweredOn": true
+}
+
+### 2) Add a powered-off server
+POST {{ServerRentalService_HostAddress}}/api/servers
+Content-Type: application/json
+
+{
+  "operatingSystem": "Windows Server 2022",
+  "memoryGb": 16,
+  "diskGb": 250,
+  "cpuCores": 8,
+  "initiallyPoweredOn": false
+}
+
+### 3) Search available servers
+GET {{ServerRentalService_HostAddress}}/api/servers/available?operatingSystem=Ubuntu&minMemoryGb=16&minDiskGb=200&minCpuCores=8
+Accept: application/json
+
+### 4) Rent server by id
+# Replace {{$guid}} with real server id
+POST {{ServerRentalService_HostAddress}}/api/servers/{{$guid}}/rent
+
+### 5) Check server rental status
+# Replace {{$guid}} with real server id
+GET {{ServerRentalService_HostAddress}}/api/servers/{{$guid}}/status
+Accept: application/json
+
+### 6) Release server
+# Replace {{$guid}} with real server id
+POST {{ServerRentalService_HostAddress}}/api/servers/{{$guid}}/release

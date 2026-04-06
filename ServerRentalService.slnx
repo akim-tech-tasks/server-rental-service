@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="ServerRentalService/ServerRentalService.csproj" />
+  <Project Path="ServerRentalService.Tests/ServerRentalService.Tests.csproj" />
+  <Project Path="ServerRentalService.SmokeTests/ServerRentalService.SmokeTests.csproj" />
+</Solution>
